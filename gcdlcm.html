@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>國一數學|最大公因數與最小公倍數的應用題|自包含教學網站</title>
+<style>
+  :root{
+    --main:#1b6b93; --main-dark:#0f4c67; --accent:#e8a33d; --ok:#2e8b57;
+    --bg:#f6f9fb; --card:#ffffff; --text:#243b4a; --line:#d7e3ea;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+  header{background:linear-gradient(135deg,var(--main-dark),var(--main));color:#fff;padding:32px 16px 26px;text-align:center}
+  header h1{margin:0 0 8px;font-size:1.9rem}
+  header p{margin:0;opacity:.9}
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:10;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;padding:8px}
+  nav a{text-decoration:none;color:var(--main-dark);padding:4px 12px;border-radius:18px;font-size:.95rem}
+  nav a:hover{background:#eaf3f8}
+  main{max-width:880px;margin:0 auto;padding:24px 16px 80px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin:22px 0}
+  h2{color:var(--main-dark);border-left:6px solid var(--accent);padding-left:12px;margin-top:4px}
+  h3{color:var(--main)}
+  .box{background:#eef7fb;border:1px solid #cfe6f2;border-radius:10px;padding:12px 16px;margin:12px 0}
+  .box.warn{background:#fdf5e7;border-color:#f0dcb8}
+  .box.key{background:#eaf6ee;border-color:#cde8d6}
+  .tag{display:inline-block;background:var(--accent);color:#fff;font-size:.8rem;padding:2px 10px;border-radius:12px;margin-right:8px}
+  .step{margin:6px 0;padding-left:34px;position:relative}
+  .step::before{content:attr(data-n);position:absolute;left:0;top:2px;width:24px;height:24px;background:var(--main);color:#fff;border-radius:50%;text-align:center;line-height:24px;font-size:.85rem}
+  .formula{font-family:"Cambria Math",Georgia,serif;background:#f2f6f8;border-radius:8px;padding:10px 16px;display:block;margin:10px 0;overflow-x:auto}
+  sup{font-size:.75em}
+  svg{max-width:100%;height:auto;display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px}
+  figcaption{text-align:center;font-size:.85rem;color:#6b8496;margin-top:-6px}
+  details{border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:10px 0;background:#fbfdfe}
+  details[open]{background:#f2faf5;border-color:#cde8d6}
+  summary{cursor:pointer;font-weight:700;color:var(--main-dark)}
+  table{border-collapse:collapse;margin:10px auto}
+  th,td{border:1px solid var(--line);padding:6px 14px;text-align:center}
+  th{background:#eaf3f8;color:var(--main-dark)}
+  input[type=number]{padding:8px;border:1px solid var(--line);border-radius:8px;width:110px;font-size:1rem}
+  button{padding:8px 20px;border:none;border-radius:8px;background:var(--main);color:#fff;font-size:1rem;cursor:pointer}
+  button:hover{background:var(--main-dark)}
+  .calc{background:#f0f7fa;border:1px dashed var(--main);border-radius:10px;padding:14px 18px;margin:12px 0}
+  .calc-out{background:#fff;border-radius:8px;padding:10px 14px;margin-top:10px;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap}
+  footer{text-align:center;color:#7d93a3;font-size:.85rem;padding:20px}
+  code{background:#eef2f5;border-radius:5px;padding:1px 6px}
+  .quiz summary::marker{content:"`}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📐 最大公因數與最小公倍數的應用題</h1>
+  <p>台灣國中一年級上學期|單元:因數與倍數|完全離線・單一 HTML 檔</p>
+</header>
+
+<nav>
+  <a href="#review">1. 因數倍數複習</a>
+  <a href="#gcd">2. 最大公因數</a>
+  <a href="#lcm">3. 最小公倍數</a>
+  <a href="#howto">4. 判斷口訣</a>
+  <a href="#examples">5. 六大題型</a>
+  <a href="#practice">6. 練習題</a>
+  <a href="#tool">7. 線上計算器</a>
+  <a href="#appendix">附錄</a>
+</nav>
+
+<main>
+
+<!-- ===================== 1. 複習 ===================== -->
+<section id="review">
+  <h2>1️⃣ 因數與倍數:快速複習</h2>
+  <p>在解應用題之前,先把兩個核心觀念弄清楚。<strong>因數</strong>是「乘法裡站在旁邊的數」,是<strong>往下分</strong>;「倍數」是<strong>由它翻倍長出來的數</strong>,是<strong>往上長</strong>。</p>
+
+  <div class="box">
+    <strong>因數(往下分)</strong>:12 ÷ 3 = 4 沒有餘數,所以 3 和 4 都是 12 的因數。<br>
+    12 的因數 = {1, 2, 3, 4, 6, 12},一定<strong>包含 1</strong>,而且<strong>它自己最大</strong>。
+  </div>
+  <div class="box">
+    <strong>倍數(往上長)</strong>:12 的倍數 = 12, 24, 36, 48, … 一直沒有盡頭,<strong>最小的就是它自己</strong>。
+  </div>
+
+  <p>質因數分解是把一個整數拆<strong>只剩質數</strong>的乘積,這個「標準分解式」是本章最重要工具:</p>
+  <div class="formula">360 = 2<sup>3</sup> × 3<sup>2</sup> × 5</div>
+
+  <p>短除法的手感(拿 24 和 60 一起除,先同時除以<strong>公因數</strong>,除不動了就各自往下除):</p>
+
+  <figure>
+  <svg viewBox="0 0 380 240" role="img" aria-label="24 與 60 的短除法">
+    <g font-size="24" fill="#243b4a" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace">
+      <!-- 第1列 -->
+      <text x="52" y="42">2 )</text>
+      <text x="140" y="42">24</text>
+      <text x="230" y="42">60</text>
+      <line x1="96" y1="52" x2="252" y2="52" stroke="#0f4c67" stroke-width="2.5"/>
+      <line x1="252" y1="52" x2="252" y2="14" stroke="#0f4c67" stroke-width="2.5"/>
+      <!-- 第2列 -->
+      <text x="52" y="92">2 )</text>
+      <text x="140" y="92">12</text>
+      <text x="230" y="92">30</text>
+      <line x1="96" y1="102" x2="252" y2="102" stroke="#0f4c67" stroke-width="2.5"/>
+      <line x1="252" y1="102" x2="252" y2="64" stroke="#0f4c67" stroke-width="2.5"/>
+      <!-- 第3列 -->
+      <text x="52" y="142">3 )</text>
+      <text x="140" y="142">6</text>
+      <text x="230" y="142">15</text>
+      <line x1="96" y1="152" x2="252" y2="152" stroke="#0f4c67" stroke-width="2.5"/>
+      <line x1="252" y1="152" x2="252" y2="114" stroke="#0f4c67" stroke-width="2.5"/>
+      <!-- 第4列:除不到(2 與 5 互質) -->
+      <text x="140" y="192">2</text>
+      <text x="230" y="192">5</text>
+    </g>
+    <g font-size="19" fill="#b3541e">
+      <text x="315" y="52">←公因數 2</text>
+      <text x="315" y="102">←公因數 2</text>
+      <text x="315" y="152">←公因數 3</text>
+      <text x="300" y="192">←除不動!</text>
+    </g>
+    <g font-size="18" fill="#2e8b57">
+      <text x="24" y="218">GCD = 2×2×3 = 12</text>
+    </g>
+    <g font-size="18" fill="#0f4c67">
+      <text x="220" y="218">LCM = 2×2×3×2×5 = 120</text>
+    </g>
+  </svg>
+  <figcaption>短除法:左邊一路寫公因數;除到最後兩數互質為止。</figcaption>
+  </figure>
+
+  <div class="box key">
+    🧠 <strong>背下來</strong>:從短除法「左邊直的」全部相乘 = <strong>最大公因數</strong>(GCD);「左邊直的 + 下面橫的」全部相乘 = <strong>最小公倍數</strong>(LCM)。
+  </div>
+</section>
+
+<!-- ===================== 2. GCD ===================== -->
+<section id="gcd">
+  <h2>2️⃣ 最大公因數(GCD)</h2>
+  <p><strong>定義</strong>:兩個數<strong>共同</strong>的因數中,<strong>最大</strong>的那一個。例如 24 與 60 的公因數有 1, 2, 3, 4, 6, 12,最大的是 <strong>12</strong>。</p>
+
+  <h3>用標準分解式求 GCD</h3>
+  <div class="formula">24 = 2<sup>3</sup> × 3　　60 = 2<sup>2</sup> × 3 × 5</div>
+  <p>GCD 就是「<strong>公用的質因數,取次方較小的</strong>」:</p>
+  <div class="formula">GCD = 2<sup>2</sup> × 3 = 12</div>
+  <p>畫成文氏圖最清楚——公用的質因數放在中間重疊區:</p>
+
+  <figure>
+  <svg viewBox="0 0 520 260" role="img" aria-label="24 與 60 的質因數文氏圖">
+    <circle cx="200" cy="130" r="105" fill="#dceffb" stroke="#1b6b93" stroke-width="2.5"/>
+    <circle cx="320" cy="130" r="105" fill="#fdeccd" fill-opacity=".55" stroke="#e8a33d" stroke-width="2.5"/>
+    <text x="120" y="60" font-size="17" fill="#0f4c67">24 自己獨有</text>
+    <text x="120" y="130" font-size="30" fill="#0f4c67" text-anchor="middle">2<sup>1</sup>*</text>
+    <text x="120" y="168" font-size="14" fill="#0f4c67" text-anchor="middle">(*原為2³,共用2²後剩1個)</text>
+    <text x="260" y="100" font-size="30" fill="#7a4a08" text-anchor="middle">2² × 3</text>
+    <text x="260" y="130" font-size="15" fill="#7a4a08" text-anchor="middle">重疊區=公因數</text>
+    <text x="260" y="160" font-size="26" fill="#7a4a08" text-anchor="middle">= GCD</text>
+    <text x="400" y="60" font-size="17" fill="#a35f00">60 自己獨有</text>
+    <text x="404" y="130" font-size="30" fill="#a35f00" text-anchor="middle">5</text>
+  </svg>
+  <figcaption>公用質因數取較小次方放中間,各自獨有的往前後放。中間的積= GCD。</figcaption>
+  </figure>
+
+  <h3>輾轉相除法(數字很大時的超快招)</h3>
+  <div class="box">
+    口訣:<strong>大除小 → 用除數除餘數 → 餘到 0 為止</strong>。最後那個除數就是 GCD。
+    <div class="formula">
+      3191 ÷ 1366 = 2 餘 459<br>
+      1366 ÷ 459 = 2 餘 448<br>
+      459 ÷ 448 = 1 餘 11<br>
+      448 ÷ 11 = 40 餘 8<br>
+      11 ÷ 8 = 1 餘 3<br>
+      8 ÷ 3 = 2 餘 2<br>
+      3 ÷ 2 = 1 餘 1<br>
+      2 ÷ 1 = 2 餘 0 → <strong>GCD = 1</strong>
+    </div>
+  </div>
+
+  <div class="box warn">
+    ⚠️ 互質不等於都沒有因數!兩數 GCD 是 1 代表「除了 1 沒有共同因數」,例如 8 和 9 互質。
+  </div>
+</section>
+
+<!-- ===================== 3. LCM ===================== -->
+<section id="lcm">
+  <h2>3️⃣ 最小公倍數(LCM)</h2>
+  <p><strong>定義</strong>:兩個數<strong>共同</strong>的倍數中,<strong>最小</strong>的那一個(0 以外)。例如 3 和 4 的倍數:</p>
+
+  <figure>
+  <svg viewBox="0 0 840 200" role="img" aria-label="數線上的公倍數">
+    <line x1="30" y1="120" x2="820" y2="120" stroke="#243b4a" stroke-width="2"/>
+    <g font-size="14" fill="#243b4a" text-anchor="middle">
+      <g stroke="#b9cbd6" stroke-width="1">
+        <line x1="40" y1="112" x2="40" y2="128"/><line x1="60" y1="114" x2="60" y2="126"/>
+        <line x1="80" y1="114" x2="80" y2="126"/><line x1="100" y1="114" x2="100" y2="126"/>
+        <line x1="120" y1="114" x2="120" y2="126"/><line x1="140" y1="114" x2="140" y2="126"/>
+        <line x1="160" y1="114" x2="160" y2="126"/><line x1="180" y1="114" x2="180" y2="126"/>
+        <line x1="200" y1="114" x2="200" y2="126"/><line x1="220" y1="114" x2="220" y2="126"/>
+        <line x1="240" y1="114" x2="240" y2="126"/><line x1="260" y1="114" x2="260" y2="126"/>
+        <line x1="280" y1="114" x2="280" y2="126"/><line x1="300" y1="114" x2="300" y2="126"/>
+        <line x1="320" y1="112" x2="320" y2="128"/><line x1="340" y1="114" x2="340" y2="126"/>
+        <line x1="360" y1="114" x2="360" y2="126"/><line x1="380" y1="114" x2="380" y2="126"/>
+        <line x1="400" y1="112" x2="400" y2="128"/><line x1="420" y1="114" x2="420" y2="126"/>
+        <line x1="440" y1="114" x2="440" y2="126"/><line x1="460" y1="114" x2="460" y2="126"/>
+        <line x1="480" y1="114" x2="480" y2="126"/><line x1="500" y1="114" x2="500" y2="126"/>
+        <line x1="520" y1="114" x2="520" y2="126"/><line x1="540" y1="114" x2="540" y2="126"/>
+        <line x1="560" y1="114" x2="560" y2="126"/><line x1="580" y1="114" x2="580" y2="126"/>
+        <line x1="600" y1="114" x2="600" y2="126"/><line x1="620" y1="114" x2="620" y2="126"/>
+        <line x1="640" y1="114" x2="640" y2="126"/><line x1="660" y1="114" x2="660" y2="126"/>
+        <line x1="680" y1="112" x2="680" y2="128"/><line x1="700" y1="114" x2="700" y2="126"/>
+        <line x1="720" y1="114" x2="720" y2="126"/><line x1="740" y1="114" x2="740" y2="126"/>
+      </g>
+      <text x="40" y="145">0</text><text x="120" y="145">4</text><text x="200" y="145">8</text>
+      <text x="280" y="145">12</text><text x="360" y="145">16</text><text x="440" y="145">20</text>
+      <text x="520" y="145">24</text><text x="600" y="145">28</text><text x="680" y="145">32</text>
+      <text x="760" y="145">36</text>
+    </g>
+    <!-- 3 的倍數(上半) -->
+    <g fill="#1b6b93">
+      <circle cx="60" cy="90" r="7"/><circle cx="120" cy="90" r="7"/><circle cx="180" cy="90" r="7"/>
+      <circle cx="240" cy="90" r="7"/><circle cx="300" cy="90" r="7"/><circle cx="360" cy="90" r="7"/>
+      <circle cx="420" cy="90" r="7"/><circle cx="480" cy="90" r="7"/><circle cx="540" cy="90" r="7"/>
+      <circle cx="600" cy="90" r="7"/><circle cx="660" cy="90" r="7"/><circle cx="720" cy="90" r="7"/>
+    </g>
+    <!-- 4 的倍數(下半) -->
+    <g fill="#e8a33d">
+      <circle cx="80" cy="150" r="7"/><circle cx="160" cy="150" r="7"/><circle cx="240" cy="150" r="7"/>
+      <circle cx="320" cy="150" r="7"/><circle cx="400" cy="150" r="7"/><circle cx="480" cy="150" r="7"/>
+      <circle cx="560" cy="150" r="7"/><circle cx="640" cy="150" r="7"/><circle cx="720" cy="150" r="7"/>
+    </g>
+    <!-- 共同落點:綠色大圈 -->
+    <g fill="none" stroke="#2e8b57" stroke-width="3.5">
+      <circle cx="120" cy="90" r="12"/><circle cx="240" cy="90" r="12"/><circle cx="360" cy="90" r="12"/>
+      <circle cx="480" cy="90" r="12"/><circle cx="600" cy="90" r="12"/><circle cx="720" cy="90" r="12"/>
+    </g>
+    <text x="120" y="60" font-size="15" fill="#2e8b57" text-anchor="middle">12</text>
+    <text x="240" y="60" font-size="15" fill="#2e8b57" text-anchor="middle">24</text>
+    <text x="360" y="60" font-size="15" fill="#2e8b57" text-anchor="middle">36</text>
+    <text x="480" y="60" font-size="15" fill="#2e8b57" text-anchor="middle">48</text>
+    <g font-size="14">
+      <text x="600" y="70" fill="#1b6b93">● 3 的倍數</text>
+      <text x="600" y="188" fill="#c07b00">● 4 的倍數</text>
+      <text x="700" y="70" fill="#2e8b57">◎ 共同落點(公倍數)</text>
+    </g>
+  </svg>
+  <figcaption>3 和 4 的「跳躍點」第一次撞在一起,就是在 12——那是最小公倍數。</figcaption>
+  </figure>
+
+  <h3>用標準分解式求 LCM</h3>
+  <div class="formula">24 = 2<sup>3</sup> × 3　　60 = 2<sup>2</sup> × 3 × 5</div>
+  <p>LCM 就是「<strong>所有出現過的質因數,取次方較大的</strong>」:</p>
+  <div class="formula">LCM = 2<sup>3</sup> × 3 × 5 = 120</div>
+
+  <div class="box key">
+    🧠 <strong>兩數恆等式(考試超好用)</strong>:
+    <div class="formula">GCD × LCM = 兩數的乘積 = a × b　(兩數皆不為 0)</div>
+    所以知道其中三個,就能算第四個:<code>LCM = a × b ÷ GCD</code>。
+  </div>
+</section>
+
+<!-- ===================== 4. 判斷口訣 ===================== -->
+<section id="howto">
+  <h2>4️⃣ 應用題怎麼判斷用 GCD 還是 LCM?</h2>
+  <p>這是同學最常卡住的地方。其實用<strong>題目情境</strong>就能一眼分辨:</p>
+
+  <table>
+    <tr><th>情境關鍵字</th><th>畫面</th><th>用誰</th></tr>
+    <tr>
+      <td>剪成<strong>等長</strong>的段數「最長」、分成<strong>最大</strong>的正方形、<strong>最多</strong>人平分</td>
+      <td>把大東西「切小」,切料不能剩下 → 要找「 divisible 最大的尺寸」</td>
+      <td>🔴 <strong>最大公因數</strong></td>
+    </tr>
+    <tr>
+      <td>「<strong>下次同時</strong>發車」「<strong>再過幾天</strong>一起出現」「燈<strong>同時</strong>亮」</td>
+      <td>兩個週期各自轉,找「下一次重合」 → 越過越多,找「最早的重合」</td>
+      <td>🔵 <strong>最小公倍數</strong></td>
+    </tr>
+  </table>
+
+  <div class="box key">
+    🪄 <strong>一秒口訣</strong>:「<strong>往<span style="color:#c0392b">下切</span>用最大公因數</strong>;「<strong>往<span style="color:#1b6b93">上等</span>(等下次一起出現)用最小公倍數</strong>」。<br>
+    「切」是把東西變小 → 填<strong>最大公因數</strong>;<br>
+    「等」要等下次相遇 → 填<strong>最小公倍數</strong>。
+  </div>
+
+  <div class="box warn">
+    ⚠️ <strong>小心半路殺出的第二問</strong>:很多題目先算 GCD 後,再要你用它去除原數(例如:每段幾公分 → <strong>答案不是 GCD,是 96÷24 = 4 段</strong>)。看清楚「最後問的是尺寸、還是段數」!
+  </div>
+</section>
+
+<!-- ===================== 5. 六大題型 ===================== -->
+<section id="examples">
+  <h2>5️⃣ 六大題型:用圖看懂、用步驟解破</h2>
+
+  <h3><span class="tag">題型 A</span>剪繩子:求最長的等長段(GCD)</h3>
+  <div class="box">
+    <strong>例題</strong>:兩條繩子分別長 96 公分與 72 公分,要剪成<strong>等長</strong>的小段且<strong>不剩剩料</strong>,每段最長幾公分?<br>
+    <strong>問的關鍵</strong>:「最長」+「等長」+「剪完不剩」 → 最大公因數。
+  </div>
+  <figure>
+  <svg viewBox="0 0 460 170" role="img" aria-label="剪繩子示意圖">
+    <g>
+      <rect x="30" y="30" width="384" height="26" fill="#dceffb" stroke="#1b6b93" stroke-width="2"/>
+      <g stroke="#1b6b93" stroke-width="2">
+        <line x1="126" y1="30" x2="126" y2="56"/><line x1="222" y1="30" x2="222" y2="56"/><line x1="318" y1="30" x2="318" y2="56"/>
+      </g>
+      <text x="78" y="17" font-size="14" fill="#0f4c67" text-anchor="middle">24 公分</text>
+      <text x="174" y="17" font-size="14" fill="#0f4c67" text-anchor="middle">24 公分</text>
+      <text x="270" y="17" font-size="14" fill="#0f4c67" text-anchor="middle">24 公分</text>
+      <text x="366" y="17" font-size="14" fill="#0f4c67" text-anchor="middle">24 公分</text>
+      <text x="430" y="50" font-size="15" fill="#0f4c67">96</text>
+      <rect x="30" y="95" width="288" height="26" fill="#fdeccd" stroke="#e8a33d" stroke-width="2"/>
+      <g stroke="#e8a33d" stroke-width="2">
+        <line x1="126" y1="95" x2="126" y2="121"/><line x1="222" y1="95" x2="222" y2="121"/>
+      </g>
+      <text x="430" y="115" font-size="15" fill="#a35f00">72</text>
+      <text x="30" y="150" font-size="14" fill="#2e8b57">兩條都能整除的「公分數」中,最大的是 24。</text>
+    </g>
+  </svg>
+  <figcaption>兩條繩子都被切出「一樣寬」的段,寬度必須同時整除 96 和 72。</figcaption>
+  </figure>
+  <div class="box key">
+    <div class="step" data-n="1">GCD(96, 72):96 = 2<sup>5</sup>×3、72 = 2<sup>3</sup>×3<sup>2</sup></div>
+    <div class="step" data-n="2">GCD = 2<sup>3</sup> × 3 = <strong>24</strong> → 每段最長 <strong>24 公分</strong></div>
+    <div class="step" data-n="3">延伸問:共剪成幾段?→ 96÷24 + 72÷24 = 4+3 = <strong>7 段</strong>(不是 7 公分!)
+  </div>
+
+  <h3><span class="tag">題型 B</span>鋪地磚:用最大正方形鋪滿長方形(GCD)</h3>
+  <div class="box">
+    <strong>例題</strong>:一塊長方形土地長 60 公分、寬 48 公分,要鋪滿<strong>正方形</strong>地磚,正方形邊長最大是幾公分?共需要幾塊?
+  </div>
+  <figure>
+  <svg viewBox="0 0 480 330" role="img" aria-label="鋪地磚示意圖">
+    <g>
+      <!-- 外框:60 x 48 -> 縮放 60px*5=300寬、240高;再放大 -->
+      <rect x="50" y="40" width="300" height="240" fill="#eef7fb" stroke="#0f4c67" stroke-width="3"/>
+      <g stroke="#1b6b93" stroke-width="2" fill="none">
+        <rect x="50" y="40" width="60" height="60"/><rect x="110" y="40" width="60" height="60"/>
+        <rect x="170" y="40" width="60" height="60"/><rect x="230" y="40" width="60" height="60"/>
+        <rect x="290" y="40" width="60" height="60"/><rect x="350" y="40" width="60" height="60"/>
+        <rect x="50" y="100" width="60" height="60"/><rect x="110" y="100" width="60" height="60"/>
+        <rect x="170" y="100" width="60" height="60"/><rect x="230" y="100" width="60" height="60"/>
+        <rect x="290" y="100" width="60" height="60"/><rect x="350" y="100" width="60" height="60"/>
+        <rect x="50" y="160" width="60" height="60"/><rect x="110" y="160" width="60" height="60"/>
+        <rect x="170" y="160" width="60" height="60"/><rect x="230" y="160" width="60" height="60"/>
+        <rect x="290" y="160" width="60" height="60"/><rect x="350" y="160" width="60" height="60"/>
+        <rect x="50" y="220" width="60" height="60"/><rect x="110" y="220" width="60" height="60"/>
+        <rect x="170" y="220" width="60" height="60"/><rect x="230" y="220" width="60" height="60"/>
+        <rect x="290" y="220" width="60" height="60"/><rect x="350" y="220" width="60" height="60"/>
+      </g>
+      <text x="200" y="308" font-size="16" fill="#0f4c67" text-anchor="middle">長 60 公分(5 塊 × 12)</text>
+      <text x="36" y="165" font-size="16" fill="#0f4c67" text-anchor="middle" transform="rotate(-90 36 165)">寬 48 公分(4 塊 × 12)</text>
+      <text x="200" y="26" font-size="16" fill="#2e8b57" text-anchor="middle">每塊正方形邊長 = GCD(60,48) = 12 公分</text>
+      <text x="430" y="170" font-size="26" fill="#e8a33d" transform="rotate(90 430 170)" text-anchor="middle">5 × 4 = 20 塊</text>
+    </g>
+  </svg>
+  <figcaption>邊長必須「同時整除」60 和 48,最大的就是 GCD;塊數 = (60÷12)×(48÷12) = 5×4 = 20。</figcaption>
+  </figure>
+
+  <h3><span class="tag">題型 C</span>公車同時發車:下次一起出發(LCM)</h3>
+  <div class="box">
+    <strong>例題</strong>:甲路線公車每 12 分鐘發一班,乙路線每 18 分鐘發一班。早上 7:00 兩路線<strong>同時</strong>發出第一班,請問<strong>下次再同時發車</strong>是幾點幾分?
+  </div>
+  <div class="box key">
+    <div class="step" data-n="1">「下次同時」 = 找兩個週期共同到達的最早時刻 → LCM(12, 18)。</div>
+    <div class="step" data-n="2">12 = 2<sup>2</sup>×3、18 = 2×3<sup>2</sup> → LCM = 2<sup>2</sup>×3<sup>2</sup> = 36(分鐘)。</div>
+    <div class="step" data-n="3">7:00 + 36 分 = <strong>7 時 36 分</strong>。</div>
+    <div class="step" data-n="4">延伸:一小時內同時發車幾次?→ 0、36 分共 <strong>2 次</strong>(7:36 之後 1:12 已超過 8:00)。
+  </div>
+
+  <h3><span class="tag">題型 D</span>圖書館行程:幾天後又碰面(LCM)</h3>
+  <div class="box">
+    <strong>例題</strong>:阿明每 6 天去一次圖書館,小華每 8 天去一次。今天兩人剛好在圖書館相遇,請問<strong>再過幾天</strong>兩人會再次同天在圖書館相遇?
+  </div>
+  <div class="box key">
+    <div class="step" data-n="1">6 = 2×3、8 = 2<sup>3</sup> → LCM = 2<sup>3</sup>×3 = 24。</div>
+    <div class="step" data-n="2"><strong>再過 24 天</strong>再相遇(含今天則是第 1 天與第 25 天,注意題目問「再過」)。
+  </div>
+
+  <h3><span class="tag">題型 E</span>只知道 GCD 和 LCM:反求兩個數</h3>
+  <div class="box">
+    <strong>例題</strong>:已知甲、乙兩個正整數的最大公因數是 12,最小公倍數是 120,求甲、乙兩數(所有可能)。
+  </div>
+  <div class="box key">
+    <div class="step" data-n="1">令甲 = 12м、乙 = 12n,且 m、n <strong>互質</strong>。</div>
+    <div class="step" data-n="2">由恆等式:<code>GCD × LCM = 甲 × 乙</code> → 12×120 = 12m × 12n = 144mn</div>
+    <div class="step" data-n="3">→ 1440 = 144 mn → m×n = 10 → 且 m、n 互質。</div>
+    <div class="step" data-n="4">(m,n) = (1,10) 或 (2,5) → 甲乙 = <strong>12 與 120</strong>,或 <strong>24 與 60</strong>。
+  </div>
+
+  <h3><span class="tag">題型 F</span>餘數型:每幾個一數都「多 1 個」(LCM)</h3>
+  <div class="box">
+    <strong>例題</strong>:一袋蘋果,每 3 個裝一袋會<strong>多 1 個</strong>,每 4 個裝一袋也<strong>多 1 個</strong>,這袋蘋果<strong>最少</strong>可能有幾個?
+  </div>
+  <div class="box key">
+    <div class="step" data-n="1">「多 1 個」就是除以 3 及除以 4 都<strong>餘 1</strong>。</div>
+    <div class="step" data-n="2">先想「每 3 個、每 4 個都<strong>剛好裝完</strong>」的最少數量 → LCM(3,4) = 12。</div>
+    <div class="step" data-n="3">因為每次都多 1 個,把 12 加回 1 → 12 + 1 = <strong>13 個</strong>。</div>
+    <div class="step" data-n="4">驗算:13 ÷ 3 = 4 餘 1 ✔、13 ÷ 4 = 3 餘 1 ✔。
+  </div>
+</section>
+
+<!-- ===================== 6. 練習 ===================== -->
+<section id="practice">
+  <h2>6️⃣ 隨堂練習(點擊展開答案與解析)</h2>
+  <p>先自己動筆,再點開看看對不對。每題都有逐步解析,和上面的題型一一對應。</p>
+
+  <details>
+    <summary>第 1 題|把 120 支鉛筆、96 本筆記本,平分給「最多」的人,剛好分完。最多有幾人?(題型 A)</summary>
+    <div class="box">「最多的人」+「平分剛好完」 → GCD(120, 96)。<br>
+    120 = 2<sup>3</sup>×3×5、96 = 2<sup>5</sup>×3 → GCD = 2<sup>3</sup>×3 = <strong>24 人</strong>。每人得到 5 支鉛筆、4 本筆記本。</div>
+  </details>
+
+  <details>
+    <summary>第 2 題|學校廣播鈴聲每 15 分鐘響一次,走廊電扇每 20 分鐘自動轉一次。9:00 兩者同時發生,「下次」同時發生是幾點幾分?(題型 C)</summary>
+    <div class="box">「下次同時」 → LCM(15, 20)。<br>
+    15 = 3×5、20 = 2<sup>2</sup>×5 → LCM = 2<sup>2</sup>×3×5 = 60 分 → 9:00 + 60 分 = <strong>10 時 00 分</strong>。</div>
+  </details>
+
+  <details>
+    <summary>第 3 題|兩數的最大公因數是 9,最小公倍數是 90,且兩數都不是 90,求兩數!(題型 E)</summary>
+    <div class="box">令兩數為 9m、9n(m,n 互質)。由恆等式 9×90 = 81 mn → mn = 10。<br>
+    (m,n) = (1,10) → 9 與 90 ✘(題目說不是 90);(2,5) → <strong>18 與 45</strong> ✔</div>
+  </details>
+
+  <details>
+    <summary>第 4 題|一堆糖果,每 5 個一數餘 2,每 7 個一數也餘 2,糖果最少有幾顆?(題型 F)</summary>
+    <div class="box">餘數<strong>都是 2</strong>:先求 LCM(5,7) = 35,再加回 2 → 35 + 2 = <strong>37 顆</strong>。<br>
+    驗算:37 ÷ 5 = 7 餘 2 ✔、37 ÷ 7 = 5 餘 2 ✔</div>
+  </details>
+
+  <details>
+    <summary>第 5 題|一長方形操場長 102 公尺、寬 68 公尺,沿邊緣等距種樹,四個頂點都要種,相鄰兩樹距離要「最長」。最長幾公尺?共種幾棵?(題型 A+ B)</summary>
+    <div class="box">距離同時整除 102 與 68 → GCD(102,68)。<br>
+    102 = 2×3×17、68 = 2<sup>2</sup>×17 → GCD = 2×17 = <strong>34 公尺</strong>。<br>
+    種樹沿「周長」繞一圈,樹數 = 周長 ÷ 間距 = (102+68)×2 ÷ 34 = 340 ÷ 34 = <strong>10 棵</strong>。</div>
+  </details>
+
+  <details>
+    <summary>挑戰題|有三個正整數 a、b、c,兩兩 GCD 都是 6、三數的 LCM 是 108,a+b+c 最大是多少?</summary>
+    <div class="box">a = 6м、b = 6n、c = 6r,LCD 條件之下 m, n, r 兩兩互質,且 108 = 6 × 18,即 m, n, r 的 LCM = 18 = 2 × 3<sup>2</sup>。<br>
+    兩兩互質下要湊出最大三數:m, n, r 取 {1, 2, 9} 或 {2, 9, 1} 等 → 18 = 2×9、另外一個是 1:<br>
+    三數 = 6×1、6×2、6×9 = 6、12、54 → 但 6 與 12 的 GCD 是 6 ✔、6 與 54 也是 6 ✔、12 與 54 的 GCD = 6 ✔,LCM(6,12,54) = 108 ✔<br>
+    a+b+c = 6+12+54 = <strong>72</strong>。能否更大?把 18 拆成 3 與 6?── 3 與 6 不互質,不行;拆 18 與 1 與 1 → 兩兩致使 6×18=108、6、6,GCD(6,6)=6 ✔,LCM = 108 ✔,和 = 120?── 檢查 GCD(108,6) = 6 ✔、GCD(6,6)=6 ✔、LCM(108,6,6) = 108 ✔!所以 <strong>120</strong> 才是最大(108、6、6)。</div>
+  </details>
+  <div class="box warn">💡 挑戰題的重點:反推時要想「獨有分量能不能全塞給同一個數」,別急著下筆,先列條件再逐案檢驗。</div>
+</section>
+
+<!-- ===================== 7. 計算器 ===================== -->
+<section id="tool">
+  <h2>7️⃣ 隨身 GCD/LCM 計算器(離線可用)</h2>
+  <p>輸入兩個正整數,它會用<strong>輾轉相除法</strong>一步步算給你看——等於是章節 2 的程式版,可以用來檢查你的手算:</p>
+  <div class="calc">
+    <label>a = <input type="number" id="a" value="96" min="1" max="999999"></label>
+    <label>b = <input type="number" id="b" value="72" min="1" max="999999"></label>
+    <button id="go">計算 GCD 與 LCM</button>
+    <div class="calc-out" id="out">按「計算」開始…</div>
+  </div>
+</section>
+
+<!-- ===================== 附錄 ===================== -->
+<section id="appendix">
+  <h2>📚 附錄:考前急救包</h2>
+  <h3>常見質數(背到 100 就夠用)</h3>
+  <p style="text-align:center">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97</p>
+
+  <h3>整除判斷術</h3>
+  <table>
+    <tr><th>被</th><th>秒判法</th></tr>
+    <tr><td>3</td><td>數字和是 3 的倍數(123 → 1+2+3=6 ✔)</td></tr>
+    <tr><td>4</td><td>末兩位是 4 的倍數</td></tr>
+    <tr><td>6</td><td>同時是 2 和 3 的倍數</td></tr>
+    <tr><td>9</td><td>數字和是 9 的倍數</td></tr>
+    <tr><td>11</td><td>奇位和與偶位和的差是 11 的倍數(含 0)</td></tr>
+  </table>
+
+  <h3>易錯清單</h3>
+  <ul>
+    <li>❌ 把「段數」當答案 → 先算 GCD,再用 <code>原長 ÷ GCD</code> 才是段數。</li>
+    <li>❌ 忘了「除不動」就停 → 短除法要除到兩數<strong>互質</strong>才停。</li>
+    <li>❌ 「多 2 個」的餘數題忘了加回來 → LCM 之後 <strong>+ 餘數</strong>。</li>
+    <li>❌ 周長種樹忘了它是繞一圈,不是一條線 → 樹數 = 周長 ÷ 間距(頂點共享,所以不用 +1)。</li>
+    <li>❌ GCD×LCM 恆等式在「三數以上」不成立 → 那條式子只適用於兩數。</li>
+  </ul>
+</section>
+
+<footer>
+  🎓 本教學頁為單一自包含 HTML 檔,電腦、平板、手機離線皆可開啟。<br>
+  圖片皆為內嵌 SVG,無外部連結。教學內容依台灣國民中學一年級上學期「因數與倍數」單元編寫。
+</footer>
+
+</main>
+
+<script>
+/* ---- GCD/LCM 計算器:輾轉相除法,附逐步過程 ---- */
+(function(){
+  var $a = document.getElementById('a'),
+      $b = document.getElementById('b'),
+      $go = document.getElementById('go'),
+      $out = document.getElementById('out');
+
+  $go.addEventListener('click', function(){
+    var a = Math.floor(Number($a.value)),
+        b = Math.floor(Number($b.value));
+    if (a < 1 || b < 1 || a > 999999 || b > 999999 || isNaN(a) || isNaN(b)) {
+      $out.textContent = '⚠️ 請輸入 1 ~ 999999 的正整數。';
+      return;
+    }
+    var x = a, y = b, lines = [], step = 1;
+    while (y !== 0) {
+      var q = Math.floor(x / y), r = x % y;
+      lines.push(step + '. ' + x + ' ÷ ' + y + ' = ' + q + ' 餘 ' + r);
+      x = y; y = r; step++;
+    }
+    var g = x;
+    var l = (a / g) * b; // 先除後乘,避免溢位
+    lines.push('──────────────');
+    lines.push('最大公因數 GCD(' + a + ', ' + b + ') = ' + g);
+    lines.push('最小公倍數 LCM = ' + a + ' × ' + b + ' ÷ ' + g + ' = ' + l);
+    if (g === 1) lines.push('✨ 這兩數互質!');
+    $out.textContent = lines.join('\n');
+  });
+})();
+</script>
+</body>
+</html>
